@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { pluck, switchMap, map, startWith, tap, withLatestFrom, takeUntil, finalize, filter, distinctUntilChanged, delay } from 'rxjs/operators';
+import { pluck, switchMap, map, startWith, tap, withLatestFrom, takeUntil, finalize, filter, distinctUntilChanged } from 'rxjs/operators';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { TelecomOperatorsService } from 'src/app/core/services/telecom-operators.service';
 import { RefillBalanceService } from './refill-balance.service';
@@ -49,8 +49,6 @@ export class RefillBalanceComponent implements OnInit, OnDestroy {
   });
 
   public isSubmitting$ = new BehaviorSubject(false);
-
-  public notification$ = new BehaviorSubject<{ type: 'success' | 'error', message: string }>(null);
 
   public submit$ = new Subject();
 
