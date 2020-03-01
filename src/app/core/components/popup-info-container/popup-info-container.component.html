@@ -1,0 +1,9 @@
+<ng-container *ngIf="notification$ | async as notification">
+  <div class="popup-info-overlay" (click)="closeNotification(notification)"></div>
+  <div class="popup-info-container">
+    <app-popup-info-item
+      [notification]="notification"
+      (closeNotification)="closeNotification(notification)">
+    </app-popup-info-item>
+  </div>
+</ng-container>

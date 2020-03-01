@@ -1,0 +1,32 @@
+<form *ngIf="areOperatorDetailsLoaded$ | async; else loader" class="refill" [formGroup]="form" (submit)="submit$.next()">
+  <div class="refill__logo" [style.background-image]="operatorLogo$ | async"></div>
+  <label class="refill__label" for="phoneNumber">Phone number:</label>
+  <input
+    class="refill__input"
+    name="phoneNumber"
+    [class.refill__input_invalid]="form.get('phoneNumber').invalid"
+    formControlName="phoneNumber"
+    type="tel"
+    [prefix]="phonePrefix"
+    [dropSpecialCharacters]="false"
+    [showMaskTyped]="true"
+    mask="(000) 000-00-00">
+  <label class="refill__label" for="paymentAmount">Payment amount (1-1000 RUB):</label>
+  <input
+    class="refill__input"
+    name="paymentAmount"
+    [class.refill__input_invalid]="form.get('paymentAmount').invalid"
+    formControlName="paymentAmount"
+    type="number"
+    min="1"
+    [max]="maxPaymentAmount">
+  <button class="refill__submit-btn" type="submit">Submit</button>
+  <div *ngIf="isSubmitting$ | async" class="refill__submit-overlay">
+    <app-loader-icon class="refill__submit-loader"></app-loader-icon>
+  </div>
+</form>
+<ng-template #loader>
+  <div class="loader">
+    <app-loader-icon class="loader__content"></app-loader-icon>
+  </div>
+</ng-template>

@@ -1,0 +1,15 @@
+<div class="operators" *ngIf="operators$ | async as operators; else loader">
+  <div class="operators__message">Choose your operator</div>
+  <div class="operators__list">
+    <a *ngFor="let operator of operators"
+      class="operators__item"
+      [routerLink]="'checkout/' + operator.name"
+      [style.background-image]="'url(' + operator.logoUrl + ')'">
+    </a>
+  </div>
+</div>
+<ng-template #loader>
+  <div class="loader">
+    <app-loader-icon class="loader__content"></app-loader-icon>
+  </div>
+</ng-template>
